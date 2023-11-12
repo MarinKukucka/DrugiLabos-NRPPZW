@@ -1,0 +1,36 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model WebApplication1.Models.User
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div>
+    <form asp-action="GetData" method="get">
+        <h1><b>SQL Injection</b></h1>
+        <p><b>Upute: </b>Unosom oib-a ispisuju se ime i prezime korisnika. Uključivanjem <i>checkbox-a</i> ispod omogućuje se SQL injection te se za oib može upisati ' OR 1=1;-- nakon čega će aplikacija<br />ispisati sva imena i prezimena korisnika. Ako je SQL injection onemogućen to se neće dogoditi.ispisati sva imena i prezimena korisnika. Ako je SQL injection onemogućen to se neće dogoditi.</p>
+        <div>
+            <label for="InjectionEnabled">Ranjivost uključena</label>
+            <input type="checkbox" id="InjectionEnabled" name="InjectionEnabled" value="true" />
+        </div> 
+        <br />
+        <div>
+            <label for="Oib">Oib: </label>
+            <input type="text" id="Oib" name="Oib"/>
+        </div>
+        <br />
+        <button type="submit">Dohvati podatke</button>
+    </form>
+    @if(TempData["FirstName"] != null && TempData["LastName"] != null)
+    {
+        <div>
+            <p>Ime: @TempData["FirstName"]</p>
+            <p>Prezime: @TempData["LastName"]</p>
+        </div>
+    }
+    else
+    {
+        <p>@TempData["Error"]</p>
+    }
+</div>
+<hr />
