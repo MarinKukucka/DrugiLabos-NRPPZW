@@ -1,5 +1,4 @@
-﻿using DotNetEnv;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Npgsql;
 using System.Diagnostics;
 using System.Text.RegularExpressions;
@@ -13,9 +12,7 @@ namespace WebApplication1.Controllers
 
         public HomeController() 
         {
-            Env.Load("Database.env");
-
-            connectionString = Environment.GetEnvironmentVariable("DATABASE_URL");
+            connectionString = "User Id=marin;Password=Vgs22cXCbQTVjDe5qlwLIp1Mc5QQoWx1;Database=bazapodatka;Server=dpg-cl7r69n6e7vc73a00ue0-a.frankfurt-postgres.render.com;Port=5432";
         }
 
         public IActionResult Index()
