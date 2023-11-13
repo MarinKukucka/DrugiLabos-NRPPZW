@@ -8,11 +8,11 @@ namespace WebApplication1.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly string? connectionString;
+        private readonly IConfiguration _configuration;
 
-        public HomeController() 
+        public HomeController(IConfiguration configuration) 
         {
-            connectionString = "User Id=marin;Password=Vgs22cXCbQTVjDe5qlwLIp1Mc5QQoWx1;Database=bazapodatka;Server=dpg-cl7r69n6e7vc73a00ue0-a.frankfurt-postgres.render.com;Port=5432";
+            _configuration = configuration;
         }
 
         public IActionResult Index()
@@ -31,6 +31,7 @@ namespace WebApplication1.Controllers
 
             try
             {
+                var connectionString = _configuration.GetConnectionString("connectionString");
                 using (var connection = new NpgsqlConnection(connectionString))
                 {
                     connection.Open();
